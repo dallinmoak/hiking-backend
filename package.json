@@ -3,7 +3,9 @@
   "type": "module",
   "scripts": {
     "db:generate": "drizzle-kit generate",
-    "db:push": "drizzle-kit push"
+    "db:push": "drizzle-kit push",
+    "db:studio": "drizzle-kit studio",
+    "dev": "tsx watch src/index.ts"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.0.2",
@@ -11,6 +13,7 @@
     "hono": "^4.11.3"
   },
   "devDependencies": {
+    "@hono/node-server": "^1.19.8",
     "@types/node": "^20.11.17",
     "dotenv": "^17.2.3",
     "drizzle-kit": "^0.31.8",

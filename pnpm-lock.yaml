@@ -18,6 +18,9 @@ importers:
         specifier: ^4.11.3
         version: 4.11.3
     devDependencies:
+      '@hono/node-server':
+        specifier: ^1.19.8
+        version: 1.19.8(hono@4.11.3)
       '@types/node':
         specifier: ^20.11.17
         version: 20.19.28
@@ -491,6 +494,12 @@ packages:
     cpu: [x64]
     os: [win32]
 
+  '@hono/node-server@1.19.8':
+    resolution: {integrity: sha512-0/g2lIOPzX8f3vzW1ggQgvG5mjtFBDBHFAzI5SFAi2DzSqS9luJwqg9T6O/gKYLi+inS7eNxBeIFkkghIPvrMA==}
+    engines: {node: '>=18.14.1'}
+    peerDependencies:
+      hono: ^4
+
   '@neondatabase/serverless@1.0.2':
     resolution: {integrity: sha512-I5sbpSIAHiB+b6UttofhrN/UJXII+4tZPAq1qugzwCwLIL8EZLV7F/JyHUrEIiGgQpEXzpnjlJ+zwcEhheGvCw==}
     engines: {node: '>=19.0.0'}
@@ -940,6 +949,10 @@ snapshots:
 
   '@esbuild/win32-x64@0.27.2':
     optional: true
+
+  '@hono/node-server@1.19.8(hono@4.11.3)':
+    dependencies:
+      hono: 4.11.3
 
   '@neondatabase/serverless@1.0.2':
     dependencies:
