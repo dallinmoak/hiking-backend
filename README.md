@@ -9,7 +9,7 @@ steps to get started:
 
 3. get a neondb connection string. visit neon.tech to do it, and if you wanna connect to the production neon db, contact me for the connection string. enter the connection string in `./.env` as `DB_URL=connection_string_here`
 
-4. run the database generation script if you're not using the prod connection string: `npm run db:generate` and then `npm run db:migrate`.
+4. run the database generation script if you're not using the prod connection string: `npm run db:generate` and then `npm run db:push`.
 
 5. instead of running the app as a simulated vercel app, you can just run `npm run dev` or `pnpm run dev` to trigger the tcs (typsecript transpiler) compile command i set up.
 
