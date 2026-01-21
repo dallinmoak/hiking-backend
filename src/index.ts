@@ -1,4 +1,5 @@
 import { Hono } from "hono";
+import { cors } from "hono/cors";
 import { handle } from "hono/vercel";
 
 import { db } from "./db/index.js";
@@ -9,6 +10,8 @@ export const config = {
 };
 
 const app = new Hono();
+
+app.use("/*", cors());
 
 app.get("/", (c) => {
   return c.json({ message: "Hello, World!" });
