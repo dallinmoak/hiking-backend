@@ -1,0 +1,8 @@
+POST http://localhost:3000/hikes 
+Content-Type: application/json
+
+{
+    "name":"Teton Hike", 
+    "description":"Hike in the tetons for crazy people",
+    "location":"gps"
+    }
