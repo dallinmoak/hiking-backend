@@ -1,6 +1,7 @@
 import { Context } from "hono";
 import { db } from "../db/index.js";
 import { hikes } from "../db/schema.js";
+import { eq } from "drizzle-orm";
 
 function baseCase(c: Context) {
     return c.json({ message: "Hello, World!" });
@@ -27,10 +28,17 @@ async function addHike(c: Context) {
 }
 
 async function getHike(c: Context) {
-    const id = await c.req.json();
+    console.log('attemping request')
+    try {
+        const id = Number(c.req.param('id'));
 
-    const hike = await db.select(id).from(hikes);
-    return c.json(hike);
+        const [hike] = await db.select().from(hikes).where(eq(hikes.id, id));
+        return c.json(hike);
+    }
+    catch (e) {
+        console.log(e)
+    }
+
 }
 
 export { baseCase, returnAllHikes, addHike, getHike } 

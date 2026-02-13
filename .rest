@@ -6,3 +6,6 @@ Content-Type: application/json
     "description":"Hike in the tetons for crazy people",
     "location":"gps"
     }
+###
+GET http://localhost:3000/hikes/1
+Content-Type: application/json

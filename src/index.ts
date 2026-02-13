@@ -3,8 +3,8 @@ import { cors } from "hono/cors";
 import { handle } from "hono/vercel";
 
 
-import { db } from "./db/index.js";
-import { hikes } from "./db/schema.js";
+// import { db } from "./db/index.js";
+// import { hikes } from "./db/schema.js";
 import { baseCase, returnAllHikes, addHike, getHike }  from "./controllers/hike.js";
 
 export const config = {
@@ -24,7 +24,7 @@ app.get("/", baseCase);
 app.get("/hikes", returnAllHikes);
 
 // Get single hike
-app.get("/hikes/single", getHike)
+app.get("/hikes/:id", getHike)
 
 // Add new hike to database
 app.post("/hikes", addHike)
