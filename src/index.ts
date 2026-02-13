@@ -18,12 +18,7 @@ app.use("/*", cors());
 
 
 // Default get return
-app.get("/", (c) => {
-  return c.json({ message: "Hello, World!" });
-});
-
 app.get("/", baseCase);
-
 
 // Get all hikes
 app.get("/hikes", returnAllHikes);
