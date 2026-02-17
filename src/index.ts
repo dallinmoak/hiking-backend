@@ -3,8 +3,6 @@ import { cors } from "hono/cors";
 import { handle } from "hono/vercel";
 
 
-// import { db } from "./db/index.js";
-// import { hikes } from "./db/schema.js";
 import { baseCase, returnAllHikes, addHike, getHike }  from "./controllers/hike.js";
 
 export const config = {
