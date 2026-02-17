@@ -2,8 +2,8 @@ import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { handle } from "hono/vercel";
 
-import { db } from "./db/index.js";
-import { hikes } from "./db/schema.js";
+
+import { baseCase, returnAllHikes, addHike, getHike }  from "./controllers/hike.js";
 
 export const config = {
   runtime: "edge",
@@ -11,33 +11,21 @@ export const config = {
 
 const app = new Hono();
 
+// which address are acceptable. * means all
 app.use("/*", cors());
 
-app.get("/", (c) => {
-  return c.json({ message: "Hello, World!" });
-});
 
-app.get("/hikes", async (c) => {
-  const hikeList = await db.select().from(hikes);
-  return c.json(hikeList);
-});
+// Default get return
+app.get("/", baseCase);
 
-app.post("/hikes", async (c) => {
-  // JSON or HTML form submit 
-  // console.log(c.req)
-  try {
-    const input = await c.req.json();
-    console.log(input);
-    // Take the json, look inside hikes, and insert it
-    const newhike = await db.insert(hikes).values(input);
+// Get all hikes
+app.get("/hikes", returnAllHikes);
 
-    return c.json(newhike, 201);
-    // Post test through terminal``
-  }
-  catch (e) {
-    console.log(e);
-  }
+// Get single hike
+app.get("/hikes/:id", getHike)
 
-});
+// Add new hike to database
+app.post("/hikes", addHike)
+
 
 export default handle(app);
