@@ -7,5 +7,11 @@ Content-Type: application/json
     "location":"gps"
     }
 ###
-GET http://localhost:3000/hikes/1
+GET http://localhost:3000/hikes/9
+Content-Type: application/json
+###
+GET http://localhost:3000/hikes
+Content-Type: application/json
+### 
+Get http://localhost:3000/
 Content-Type: application/json
