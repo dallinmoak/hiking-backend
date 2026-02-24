@@ -1,11 +1,11 @@
-POST http://localhost:3000/hikes 
-Content-Type: application/json
+# POST http://localhost:3000/hikes 
+# Content-Type: application/json
 
-{
-    "name":"Teton Hike", 
-    "description":"Hike in the tetons for crazy people",
-    "location":"gps"
-    }
+# {
+#     "name":"Teton Hike", 
+#     "description":"Hike in the tetons for crazy people",
+#     "location":"gps"
+#     }
 ###
 GET http://localhost:3000/hikes/9
 Content-Type: application/json
@@ -15,3 +15,8 @@ Content-Type: application/json
 ### 
 Get http://localhost:3000/
 Content-Type: application/json
+
+###
+GET http://localhost:3000/protected
+Content-Type: application/json
+Is-Chill: false
