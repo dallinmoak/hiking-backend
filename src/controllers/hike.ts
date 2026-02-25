@@ -3,10 +3,6 @@ import { db } from "../db/index.js";
 import { hikes } from "../db/schema.js";
 import { eq } from "drizzle-orm";
 
-function baseCase(c: Context) {
-  return c.json({ message: "Hello, World!" });
-}
-
 async function returnAllHikes(c: Context) {
   const hikeList = await db.select().from(hikes);
   return c.json(hikeList);
@@ -38,4 +34,4 @@ async function getHike(c: Context) {
 
 }
 
-export { baseCase, returnAllHikes, addHike, getHike } 
+export { returnAllHikes, addHike, getHike } 
