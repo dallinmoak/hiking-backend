@@ -31,7 +31,24 @@ async function getHike(c: Context) {
   catch (e) {
     console.log(e)
   }
-
 }
 
-export { returnAllHikes, addHike, getHike } 
+async function deleteHike(c: Context) {
+  console.log('Attempting to delete')
+  try {
+    const id = Number(c.req.param('id'));
+
+    const [hike] = await db.select().from(hikes).where(eq(hikes.id, id));
+    if (!hike) {
+      return c.json({ message: "Hike not found" }, 404);
+    } else {
+      await db.delete(hikes).where(eq(hikes.id, id));
+      return c.json({ message: "Hike deleted successfully" });
+    }
+  }
+  catch (e) {
+    console.log(e);
+  }
+}
+
+export { returnAllHikes, addHike, getHike, deleteHike } 
