@@ -20,7 +20,6 @@ async function addHike(c: Context) {
 }
 
 async function getHike(c: Context) {
-  console.log("attemping request");
   try {
     const id = Number(c.req.param("id"));
 
