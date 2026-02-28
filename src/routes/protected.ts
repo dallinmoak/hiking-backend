@@ -1,10 +1,16 @@
 import { Hono } from "hono";
+import { JWTPayload } from "jose";
 import * as hikeController  from "../controllers/hike.js";
 
-const protectedRoutes = new Hono();
+type Variables = {
+  user: JWTPayload;
+}
 
-protectedRoutes.get('/', async (c)=> {
-  return c.json({ message: "you are chill bro" });
+const protectedRoutes = new Hono<{ Variables: Variables }>();
+
+protectedRoutes.get("/", async (c) => {
+  const user = c.get("user");
+  return c.json({ message: `thanks for the authorized request, ${user.name}`, user });
 });
 
 protectedRoutes.delete('/hikes/:id', hikeController.deleteHike);
