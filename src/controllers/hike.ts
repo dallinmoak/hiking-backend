@@ -14,29 +14,26 @@ async function addHike(c: Context) {
     const newhike = await db.insert(hikes).values(input);
 
     return c.json(newhike, 201);
-  }
-  catch (e) {
+  } catch (e) {
     console.log(e);
   }
 }
 
 async function getHike(c: Context) {
-  console.log('attemping request')
+  console.log("attemping request");
   try {
-    const id = Number(c.req.param('id'));
-    
+    const id = Number(c.req.param("id"));
+
     const [hike] = await db.select().from(hikes).where(eq(hikes.id, id));
     return c.json(hike);
-  }
-  catch (e) {
-    console.log(e)
+  } catch (e) {
+    console.log(e);
   }
 }
 
 async function deleteHike(c: Context) {
-  console.log('Attempting to delete')
   try {
-    const id = Number(c.req.param('id'));
+    const id = Number(c.req.param("id"));
 
     const [hike] = await db.select().from(hikes).where(eq(hikes.id, id));
     if (!hike) {
@@ -45,10 +42,9 @@ async function deleteHike(c: Context) {
       await db.delete(hikes).where(eq(hikes.id, id));
       return c.json({ message: "Hike deleted successfully" });
     }
-  }
-  catch (e) {
+  } catch (e) {
     console.log(e);
   }
 }
 
-export { returnAllHikes, addHike, getHike, deleteHike } 
+export { returnAllHikes, addHike, getHike, deleteHike };

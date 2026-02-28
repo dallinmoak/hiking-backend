@@ -18,12 +18,6 @@ app.route("/", publicRoutes);
 
 app.use("/protected/*", authMiddleware);
 
-// When you use app.route("/protected/*", protectedRoutes), 
-// Hono (and many other frameworks) 
-// appends the paths defined inside the router to that prefix.
-// is what LLM said about have * after protected/ so I got rid of it and it works
-// when using REST client to test the delete route. 
 app.route("/protected/", protectedRoutes);
-
 
 export default handle(app);
