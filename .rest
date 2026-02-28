@@ -19,4 +19,9 @@ Content-Type: application/json
 ###
 GET http://localhost:3000/protected
 Content-Type: application/json
-Is-Chill: false
+Is-Chill: true
+
+###
+DELETE http://localhost:3000/protected/hikes/5
+Content-Type: application/json
+Is-Chill: true
