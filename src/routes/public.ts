@@ -15,7 +15,7 @@ publicRoutes.get("/hikes", hikeController.returnAllHikes);
 publicRoutes.get("/hikes/:id", hikeController.getHike);
 
 // Add new hike to database
-publicRoutes.post("/hikes", hikeController.addHike);
+// publicRoutes.post("/hikes", hikeController.addHike);
 
 export default publicRoutes;
 
