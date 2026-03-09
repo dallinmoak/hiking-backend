@@ -11,7 +11,7 @@ async function returnAllHikes(c: Context) {
 async function addHike(c: Context) {
   try {
     const input = await c.req.json();
-    const newhike = await db.insert(hikes).values(input);
+    const newhike = await db.insert(hikes).values(input).returning();
 
     return c.json(newhike, 201);
   } catch (e) {
