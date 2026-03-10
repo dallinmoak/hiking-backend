@@ -3,34 +3,38 @@ import { db } from "../db/index.js";
 import { hikes } from "../db/schema.js";
 import { eq } from "drizzle-orm";
 
-async function returnAllHikes(c: Context) {
+const returnAllHikes = async (c: Context) => {
   const hikeList = await db.select().from(hikes);
   return c.json(hikeList);
-}
+};
 
-async function addHike(c: Context) {
+const addHike = async (c: Context) => {
   try {
     const input = await c.req.json();
-    const newhike = await db.insert(hikes).values(input);
+    const hikeData = {
+      ...input,
+      authorId: input.userId,
+    };
+    const newhike = await db.insert(hikes).values(hikeData);
 
     return c.json(newhike, 201);
   } catch (e) {
-    console.log(e);
+    console.error(e);
   }
-}
+};
 
-async function getHike(c: Context) {
+const getHike = async (c: Context) => {
   try {
     const id = Number(c.req.param("id"));
 
     const [hike] = await db.select().from(hikes).where(eq(hikes.id, id));
     return c.json(hike);
   } catch (e) {
-    console.log(e);
+    console.error(e);
   }
-}
+};
 
-async function deleteHike(c: Context) {
+const deleteHike = async (c: Context) => {
   try {
     const id = Number(c.req.param("id"));
 
@@ -42,8 +46,8 @@ async function deleteHike(c: Context) {
       return c.json({ message: "Hike deleted successfully" });
     }
   } catch (e) {
-    console.log(e);
+    console.error(e);
   }
-}
+};
 
 export { returnAllHikes, addHike, getHike, deleteHike };
