@@ -1,5 +1,6 @@
 import { Hono } from "hono";
 import * as hikeController from "../controllers/hike.js";
+import { appendFile } from "fs";
 
 const publicRoutes = new Hono();
 
