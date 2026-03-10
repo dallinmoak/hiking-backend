@@ -15,7 +15,7 @@ const addHike = async (c: Context) => {
       ...input,
       authorId: input.userId,
     };
-    const newhike = await db.insert(hikes).values(hikeData);
+    const newhike = await db.insert(hikes).values(hikeData).returning();
 
     return c.json(newhike, 201);
   } catch (e) {
