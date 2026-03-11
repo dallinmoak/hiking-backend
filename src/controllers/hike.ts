@@ -1,7 +1,7 @@
 import { Context } from "hono";
 import { db } from "../db/index.js";
-import { hikes } from "../db/schema.js";
-import { eq } from "drizzle-orm";
+import { hikes, userFavorites } from "../db/schema.js";
+import { eq, and } from "drizzle-orm";
 
 const returnAllHikes = async (c: Context) => {
   const hikeList = await db.select().from(hikes);
@@ -50,4 +50,23 @@ const deleteHike = async (c: Context) => {
   }
 };
 
-export { returnAllHikes, addHike, getHike, deleteHike };
+const isFavorite = async (c: Context) => {
+  try {
+    const userId = c.get("user").sub;
+    const hikeId = Number(c.req.param("hikeId"));
+
+    const favorite = await db
+      .select()
+      .from(userFavorites)
+      .where(
+        and(eq(userFavorites.userId, userId), eq(userFavorites.hikeId, hikeId)),
+      );
+
+    return c.json({ isFavorite: favorite.length > 0 });
+  } catch (e) {
+    console.error(e);
+    return c.json({ error: "Failed to check favorite status" }, 500);
+  }
+};
+
+export { returnAllHikes, addHike, getHike, deleteHike, isFavorite };

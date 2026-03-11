@@ -13,7 +13,11 @@ protectedRoutes.get("/", async (c) => {
   const user = c.get("user");
   return c.json({ message: `thanks for the authorized request, ${user.name}`, user });
 });
+
+protectedRoutes.post("/favorites/:hikeId", user.addFavorite);
+protectedRoutes.delete("/favorites/:hikeId", user.removeFavorite);
 protectedRoutes.get('/my-favorites', user.getFavorites);
+protectedRoutes.get('/hikes/is-favorite/:hikeId', hikeController.isFavorite);
 
 
 // delete hike by id
