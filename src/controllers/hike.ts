@@ -5,7 +5,7 @@ import { eq } from "drizzle-orm";
 
 async function returnAllHikes(c: Context) {
   const hikeList = await db.select().from(hikes);
-  return c.json(hikeList);
+  return c.json(hikeList, 200);
 }
 
 async function addHike(c: Context) {
