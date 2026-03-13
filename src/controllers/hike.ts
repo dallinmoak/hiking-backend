@@ -2,6 +2,7 @@ import { Context } from "hono";
 import { db } from "../db/index.js";
 import { hikes, userFavorites } from "../db/schema.js";
 import { eq, and } from "drizzle-orm";
+import { isAuthor } from "../lib/utils.js";
 
 const returnAllHikes = async (c: Context) => {
   const hikeList = await db.select().from(hikes);
@@ -37,7 +38,11 @@ const getHike = async (c: Context) => {
 const deleteHike = async (c: Context) => {
   try {
     const id = Number(c.req.param("id"));
-
+    const userId = c.get("user").sub;
+    const isAuthorCheck = await isAuthor(id, userId);
+    if (!isAuthorCheck) {
+      return c.json({ message: "Unauthorized" }, 403);
+    }
     const [hike] = await db.select().from(hikes).where(eq(hikes.id, id));
     if (!hike) {
       return c.json({ message: "Hike not found" }, 404);

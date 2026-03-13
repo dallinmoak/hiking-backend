@@ -36,21 +36,22 @@ const removeFavorite = async (c: Context) => {
   try {
     const userId = c.get("user").sub;
     const hikeId = c.req.param("hikeId");
-    await db
+    const res = await db
       .delete(userFavorites)
       .where(
         and(
           eq(userFavorites.userId, userId),
           eq(userFavorites.hikeId, parseInt(hikeId)),
         ),
-      );
-    return c.json({ message: "Favorite removed successfully" });
+      )
+      .returning();
+    return c.json({
+      deletedRecord: res[0],
+    });
   } catch (e) {
     console.error(e);
     return c.json({ error: "Failed to remove favorite" }, 500);
   }
-
-
 };
 
 export { getFavorites, addFavorite, removeFavorite };
