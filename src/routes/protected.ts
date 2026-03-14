@@ -19,6 +19,8 @@ protectedRoutes.delete("/favorites/:hikeId", user.removeFavorite);
 protectedRoutes.get('/my-favorites', user.getFavorites);
 protectedRoutes.get('/hikes/is-favorite/:hikeId', hikeController.isFavorite);
 
+protectedRoutes.get("/users/:userId", user.getUser);
+
 
 // delete hike by id
 protectedRoutes.delete('/hikes/:id', hikeController.deleteHike);
