@@ -1,7 +1,22 @@
 import { Context } from "hono";
 import { db } from "../db/index.js";
-import { userFavorites, hikes } from "../db/schema.js";
+import { userFavorites, hikes, users } from "../db/schema.js";
 import { eq, and } from "drizzle-orm";
+
+const getUser = async (c: Context) => {
+  try {
+    const id = c.req.param("userId");
+    const res = await db.select().from(users).where(eq(users.id, id));
+    if (res.length === 0) {
+      return c.json({ error: "User not found" }, 404);
+    }
+    const user = res[0];
+    return c.json(user);
+  } catch (e) {
+    console.error(e);
+    return c.json({ error: "Failed to get user" }, 500);
+  }
+}
 
 const getFavorites = async (c: Context) => {
   try {
@@ -54,4 +69,4 @@ const removeFavorite = async (c: Context) => {
   }
 };
 
-export { getFavorites, addFavorite, removeFavorite };
+export { getFavorites, addFavorite, removeFavorite, getUser };

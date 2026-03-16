@@ -1,11 +1,11 @@
 import { Context } from "hono";
 import { db } from "../db/index.js";
-import { hikes, userFavorites } from "../db/schema.js";
+import { hikes, userFavorites, hikesWithDetails } from "../db/schema.js";
 import { eq, and } from "drizzle-orm";
 import { isAuthor } from "../lib/utils.js";
 
 const returnAllHikes = async (c: Context) => {
-  const hikeList = await db.select().from(hikes);
+  const hikeList = await db.select().from(hikesWithDetails);
   return c.json(hikeList);
 };
 
@@ -28,7 +28,7 @@ const getHike = async (c: Context) => {
   try {
     const id = Number(c.req.param("id"));
 
-    const [hike] = await db.select().from(hikes).where(eq(hikes.id, id));
+    const [hike] = await db.select().from(hikesWithDetails).where(eq(hikesWithDetails.id, id));
     return c.json(hike);
   } catch (e) {
     console.error(e);
