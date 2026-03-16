@@ -52,15 +52,15 @@ publicRoutes.get("/hikes/:id", hikeController.getHike);
 // Add new hike to database
 publicRoutes.post("/hikes", hikeController.addHike);
 
-publicRoutes.doc("/doc", {
-  openapi: "3.0.0",
-  info: {
-    title: "Hikes API",
-    version: "1.0.0"
-  }
-})
+// publicRoutes.doc("/doc", {
+//   openapi: "3.0.0",
+//   info: {
+//     title: "Hikes API",
+//     version: "1.0.0"
+//   }
+// })
 
-publicRoutes.get("/ui", swaggerUI({ url: "/doc" }))
+publicRoutes.get("/ui", swaggerUI({ url: "/routing.yaml" }))
 
 export default publicRoutes;
 

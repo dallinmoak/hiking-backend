@@ -1,8 +1,7 @@
 openapi: 3.0.3
 info:
-  title: REST API for Hikes website
-  description: Our API that...[]
-  version: 0.1.9
+  title: "Hikes API"
+  version: "1.0.0"
 
 servers:
   - url: http://api.example.com/v1
