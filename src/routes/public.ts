@@ -50,7 +50,7 @@ publicRoutes.openapi(routeAll, hikeController.returnAllHikes);
 publicRoutes.get("/hikes/:id", hikeController.getHike);
 
 // Add new hike to database
-publicRoutes.post("/hikes", hikeController.addHike);
+// publicRoutes.post("/hikes", hikeController.addHike);
 
 // publicRoutes.doc("/doc", {
 //   openapi: "3.0.0",
