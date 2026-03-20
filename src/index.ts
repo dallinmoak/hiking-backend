@@ -11,8 +11,6 @@ export const config = {
   runtime: "edge",
 };
 
-// const app = new Hono();
-
 const app = new OpenAPIHono;
 
 app.use("/*", cors());
