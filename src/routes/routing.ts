@@ -1,4 +1,4 @@
-{
+export const hikedocs = {
   "openapi": "3.0.3",
   "info": {
     "title": "Hikes API",
@@ -133,4 +133,4 @@
       }
     }
   }
-}
+} as const;

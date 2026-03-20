@@ -1,8 +1,8 @@
 import { Hono } from "hono";
 import * as hikeController from "../controllers/hike.js";
 
-import { swaggerUI } from "@hono/swagger-ui";
-import hikeDoc from "./routing.json" with {type: 'json'}
+import { swaggerUI } from "@hono/swagger-ui"; // This has an issue with serverless artitechture
+import { hikedocs } from "./routing.js";
 
 const publicRoutes = new Hono();
 
@@ -18,7 +18,7 @@ publicRoutes.get("/hikes", hikeController.returnAllHikes);
 publicRoutes.get("/hikes/:id", hikeController.getHike);
 
 // Documentation route
-publicRoutes.get('/ui', swaggerUI({ spec: hikeDoc, url: [] }))
+publicRoutes.get('/ui', swaggerUI({ spec: hikedocs, url: [] }))
 
 export default publicRoutes;
 
