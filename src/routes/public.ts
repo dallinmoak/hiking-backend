@@ -3,10 +3,10 @@ import * as hikeController from "../controllers/hike.js";
 import { appendFile } from "fs";
 import { xid } from "zod"
 
-import { OpenAPIHono } from "@hono/zod-openapi";
 import { swaggerUI } from "@hono/swagger-ui";
+import hikeDoc from "./routing.json" with {type: 'json'}
 
-const publicRoutes = new OpenAPIHono();
+const publicRoutes = new Hono();
 
 // Default get return
 publicRoutes.get("/", (c) => {
@@ -20,7 +20,7 @@ publicRoutes.get("/hikes", hikeController.returnAllHikes);
 publicRoutes.get("/hikes/:id", hikeController.getHike);
 
 // Documentation route
-publicRoutes.get("/ui", swaggerUI({ url: "/routing.yaml" }))
+publicRoutes.get('/ui', swaggerUI({ spec: hikeDoc, url: [] }))
 
 export default publicRoutes;
 
