@@ -10,7 +10,7 @@ export const config = {
   runtime: "edge",
 };
 
-const app = new Hono();
+const app = new Hono;
 
 app.use("/*", cors());
 

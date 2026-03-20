@@ -6,7 +6,7 @@ import { isAuthor } from "../lib/utils.js";
 
 const returnAllHikes = async (c: Context) => {
   const hikeList = await db.select().from(hikesWithDetails);
-  return c.json(hikeList);
+  return c.json(hikeList, 200);
 };
 
 const addHike = async (c: Context) => {
@@ -21,6 +21,8 @@ const addHike = async (c: Context) => {
     return c.json(newhike, 201);
   } catch (e) {
     console.error(e);
+
+    return c.json('New hike failed', 404)
   }
 };
 
@@ -29,10 +31,13 @@ const getHike = async (c: Context) => {
     const id = Number(c.req.param("id"));
 
     const [hike] = await db.select().from(hikesWithDetails).where(eq(hikesWithDetails.id, id));
-    return c.json(hike);
+    return c.json(hike, 200);
   } catch (e) {
     console.error(e);
+    return c.json('Hike was not found', 404)
   }
+
+
 };
 
 const deleteHike = async (c: Context) => {
