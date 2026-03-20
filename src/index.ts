@@ -5,13 +5,12 @@ import { handle } from "hono/vercel";
 import protectedRoutes from "./routes/protected.js";
 import publicRoutes from "./routes/public.js";
 import { authMiddleware } from "./middleware/auth.js";
-import { OpenAPIHono } from "@hono/zod-openapi";
 
 export const config = {
   runtime: "edge",
 };
 
-const app = new OpenAPIHono;
+const app = new Hono;
 
 app.use("/*", cors());
 

@@ -1,7 +1,5 @@
 import { Hono } from "hono";
 import * as hikeController from "../controllers/hike.js";
-import { appendFile } from "fs";
-import { xid } from "zod"
 
 import { swaggerUI } from "@hono/swagger-ui";
 import hikeDoc from "./routing.json" with {type: 'json'}
