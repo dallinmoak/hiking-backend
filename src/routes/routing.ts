@@ -24,7 +24,7 @@ export const hikedocs = {
         }
       }
     },
-    "/hike": {
+    "/hikes": {
       "get": {
         "summary": "Returns a list of hikes",
         "description": "Does an SQL search for the hike database",
@@ -54,7 +54,7 @@ export const hikedocs = {
         }
       }
     },
-    "/hike/{id}": {
+    "/hikes/{id}": {
       "get": {
         "summary": "Returns the specified hike.",
         "parameters": [
